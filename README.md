@@ -1,5 +1,5 @@
-Simple Reddit Crawler
-=====================
+(͡ ° ͜ʖ͡°) Simple Reddit Crawler
+================================
 
 Lightweight Reddit crawler using Python and MySQL
 
