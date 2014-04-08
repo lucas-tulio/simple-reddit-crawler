@@ -9,7 +9,7 @@ Lightweight Reddit crawler using Python and MySQL
 
 2. Start mysql using `mysqld start`
 
-3. Run the `create-database.sql` script on your mysql instance
+3. Run the `create-database.sql` script in your mysql instance
 
 4. Install Python pip using `sudo apt-get install python-pip`
 
