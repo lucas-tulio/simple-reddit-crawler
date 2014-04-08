@@ -134,7 +134,7 @@ def requestJson(url, delay):
 
 # Url, header and request delay
 # If we don't set an unique User Agent, Reddit will limit our requests per hour and eventually block them
-userAgent = "Simple Reddit Crawler by /u/murlocsByTheBeach"
+userAgent = ""
 if userAgent == "":
 	print
 	print "Error: you need to set an User Agent inside this script"
