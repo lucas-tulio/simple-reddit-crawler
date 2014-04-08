@@ -1,4 +1,4 @@
-simple-reddit-crawler
+Simple Reddit Crawler
 =====================
 
 Lightweight Reddit crawler using Python and MySQL
