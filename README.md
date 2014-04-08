@@ -17,6 +17,8 @@ Lightweight Reddit crawler using Python and MySQL
 
 ### How to use the Crawler
 
+1. Open `reader/reader.py`, search for `userAgent = ""` and enter an User-Agent there. Skipping this step will cause Reddit to block your requests.
+
 The crawler runs in 2 steps: threads and comments.
 
 ##### Threads:
