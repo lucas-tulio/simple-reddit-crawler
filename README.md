@@ -3,7 +3,7 @@ Simple Reddit Crawler
 
 Lightweight Reddit crawler using Python and MySQL
 
-#### How to build
+### How to build
 
 1. `git clone` this repository.
 
@@ -15,11 +15,11 @@ Lightweight Reddit crawler using Python and MySQL
 
 5. Install PyMySQL using `sudo pip install PyMySQL`
 
-#### How to use the Crawler
+### How to use the Crawler
 
 The crawler runs in 2 steps: threads and comments.
 
-**Threads:**
+##### Threads:
 
 1. Run `python reader/reader.py /r/yoursubreddithere`
 
@@ -29,7 +29,7 @@ The crawler runs in 2 steps: threads and comments.
 
 4. By checking the ID of the thread given by Reddit (thread_id column in our "threads" table), we detect if that thread has already been read. Duplicate threads are ignored.
 
-**Comments:**
+##### Comments:
 
 1. Run `python reader/reader.py --get-comments`
 
@@ -39,7 +39,7 @@ The crawler runs in 2 steps: threads and comments.
 
 4. By checking the ID of the comment given by Reddit (comment_id column in our "comments" table), we detect if that comment has already been read. Duplicate comments are ignored.
 
-**Important:**
+##### Important:
 
 Since Reddit limits the number of json requests to one every two seconds, the process of reading comments becomes increasingly long as more and more threads are posted. This ends up making the coments reading take so long that more than 25 threads are posted in the meantime, making us lose some threads.
 
