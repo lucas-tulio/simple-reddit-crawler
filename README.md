@@ -15,9 +15,9 @@ Lightweight Reddit crawler using Python and MySQL
 
 5. Install PyMySQL using `sudo pip install PyMySQL`
 
-### How to use the Crawler
+6. Open `reader/reader.py`, search for `userAgent = ""` and enter an User-Agent there. Skipping this step will cause Reddit to block your requests.
 
-1. Open `reader/reader.py`, search for `userAgent = ""` and enter an User-Agent there. Skipping this step will cause Reddit to block your requests.
+### How to use the Crawler
 
 The crawler runs in 2 steps: threads and comments.
 
