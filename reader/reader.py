@@ -65,6 +65,9 @@ def readComments(obj, threadId, threadUrl, cur):
 
 		# Basic info, present both in Title and Comment
 		commentId = i['data']['id']
+		content = ""
+		url = ""
+		score = 0
 		created = 0
 		if 'created_utc' in i['data']:
 			created = i['data']['created_utc']
@@ -73,29 +76,26 @@ def readComments(obj, threadId, threadUrl, cur):
 
 		# Is it a comment?
 		if 'body' in i['data']:
+
 			url = threadUrl + commentId
-			body = i['data']['body']
+			content = i['data']['body']
 			ups = int(i['data']['ups'])
 			downs = int(i['data']['downs'])
 			score = ups - downs
 
-			try:
-				cur.execute("""INSERT INTO comments (id_comment, id_thread, comment, url, score, created) values (%s, %s, %s, %s, %s, %s)""", (commentId, threadId, body, url, int(score), created))
-				newComments += 1
-			except pymysql.err.IntegrityError as e:
-				existingComments += 1
-
-		# Is it a post?
+		# Or is it the title post?
 		elif 'selftext' in i['data']:
+
 			url = i['data']['url']
-			selftext = i['data']['selftext']
+			content = i['data']['selftext']
 			score = i['data']['score']
 
-			try:
-				cur.execute("""INSERT INTO comments (id_comment, id_thread, comment, url, score, created) values (%s, %s, %s, %s, %s, %s)""", (commentId, threadId, selftext, url, int(score), created))
-				newComments += 1
-			except pymysql.err.IntegrityError as e:
-				existingComments += 1
+		# Save!
+		try:
+			cur.execute("""INSERT INTO comments (id_comment, id_thread, comment, url, score, created) values (%s, %s, %s, %s, %s, %s)""", (commentId, threadId, content, url, int(score), created))
+			newComments += 1
+		except pymysql.err.IntegrityError as e:
+			existingComments += 1
 
 		# Does it have a reply?
 		if 'replies' in i['data'] and len(i['data']['replies']) > 0:
@@ -134,7 +134,7 @@ def requestJson(url, delay):
 
 # Url, header and request delay
 # If we don't set an unique User Agent, Reddit will limit our requests per hour and eventually block them
-userAgent = ""
+userAgent = "Simple Reddit Crawler by /u/murlocsByTheBeach"
 if userAgent == "":
 	print
 	print "Error: you need to set an User Agent inside this script"
@@ -153,7 +153,7 @@ if len(sys.argv) == 2:
 		print "Reading comments"
 	else:
 		subreddit = sys.argv[1]
-		subredditUrl = baseUrl + subreddit + "/new/.json"
+		subredditUrl = baseUrl + subreddit + "/.json"
 		shouldSkipComments = True
 		delay = 30
 		print "Reading threads from " + subredditUrl
