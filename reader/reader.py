@@ -153,7 +153,7 @@ if len(sys.argv) == 2:
 		print "Reading comments"
 	else:
 		subreddit = sys.argv[1]
-		subredditUrl = baseUrl + subreddit + "/.json"
+		subredditUrl = baseUrl + subreddit + "/new/.json"
 		shouldSkipComments = True
 		delay = 30
 		print "Reading threads from " + subredditUrl
