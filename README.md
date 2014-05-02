@@ -15,9 +15,7 @@ Run `python reader/reader.py --get-comments`
 
 1. `git clone` this repository.
 
-2. Start mysql using `mysqld start`
-
-3. Run the `create-database.sql` script in your mysql instance
+2. Run the `create-database.sql` script in your MySQL instance
 
 4. Install Python pip using `sudo apt-get install python-pip`
 
