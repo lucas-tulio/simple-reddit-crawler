@@ -1,4 +1,6 @@
-CREATE SCHEMA reddit DEAFULT CHARSET 'utf8' COLLATE 'utf8_general_ci';
+CREATE SCHEMA reddit DEFAULT CHARSET 'utf8' COLLATE 'utf8_general_ci';
+
+USE reddit;
 
 CREATE TABLE subs (
 id int primary key not null auto_increment,
