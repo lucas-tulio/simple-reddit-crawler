@@ -144,17 +144,17 @@ hdr = {'User-Agent' : userAgent}
 baseUrl = "http://www.reddit.com"
 
 # Read args
-shouldSkipComments = False
-shouldSkipThreads = False
+shouldReadComments = False
+shouldReadThreads = False
 if len(sys.argv) == 2:
 	if sys.argv[1] == "--get-comments":
-		shouldSkipThreads = True
+		shouldReadThreads = True
 		delay = 2
 		print "Reading comments"
 	else:
 		subreddit = sys.argv[1]
 		subredditUrl = baseUrl + subreddit + "/new/.json"
-		shouldSkipComments = True
+		shouldReadComments = True
 		delay = 30
 		print "Reading threads from " + subredditUrl
 else:
@@ -179,8 +179,8 @@ while True:
 	totalNewComments = 0
 	totalExistingComments = 0
 
-	# Skip reading threads if the arg has been passed
-	if not shouldSkipThreads:
+	# Read threads
+	if not shouldReadThreads:
 
 		# Read the Threads
 		print "Requesting new threads..."
@@ -190,8 +190,8 @@ while True:
 		readThreads(jsonObj['data']['children'], cur)
 		conn.commit()
 
-	# Skip reading comments if the arg has been passed
-	if not shouldSkipComments:
+	# Read comments
+	if not shouldReadComments:
 	
 		# Get all the threads urls
 		cur.execute("SELECT * FROM threads")
@@ -224,10 +224,10 @@ while True:
 	# Log this run in the database
 	print
 	print "Finishing up. Logging this run..."
-	if shouldSkipComments:
+	if shouldReadComments:
 		print "Total new threads: " + str(totalNewThreads)
 		print "Total existing threads (skipped, not inserted): " + str(totalExistingThreads)
-	if shouldSkipThreads:
+	if shouldReadThreads:
 		print "Total new comments: " + str(totalNewComments)
 		print "Total existing comments (skipped, not inserted): " + str(totalExistingComments)
 	print "---------------------------------------------------"
