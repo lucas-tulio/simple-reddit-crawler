@@ -2,14 +2,6 @@ CREATE SCHEMA reddit DEFAULT CHARSET 'utf8' COLLATE 'utf8_general_ci';
 
 USE reddit;
 
-CREATE TABLE subs (
-id int primary key not null auto_increment,
-name varchar(255) not null,
-url varchar(255) not null
-) engine=innodb;
-
-INSERT INTO subs (name, url) values ('leagueoflegends', '/r/leagueoflegends');
-
 CREATE TABLE threads (
 id int primary key not null auto_increment,
 id_thread varchar(16) not null unique key,
