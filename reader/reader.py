@@ -43,6 +43,7 @@ def readThreads(subreddit, cur):
 		try:
 			cur.execute("""INSERT INTO threads (id_thread, id_sub, title, url, score, created) values (%s, 1, %s, %s, %s, %s)""", (threadId, title, permalink, int(score), created))
 			newThreads += 1
+			print "New thread: " + title
 		except pymysql.err.IntegrityError as e:
 			existingThreads += 1
 
