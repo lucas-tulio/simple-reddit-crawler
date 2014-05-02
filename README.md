@@ -9,7 +9,7 @@ Run `python reader/reader.py /r/yoursubreddithere`
 
 ##### Saving Comments:
 
-1. Run `python reader/reader.py --get-comments`
+Run `python reader/reader.py --get-comments`
 
 ### How to build
 
